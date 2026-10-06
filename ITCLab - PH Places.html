@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beautiful Spots in El Nido, Palawan</title>
+<style>
+  :root {
+    --deep: #0f766e;
+    --sea: #2a9d8f;
+    --mist: #eef8f6;
+    --ink: #24323d;
+    --soft: #52616b;
+    --sand: #f4f7f5;
+    --night: #193b3a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { font-family: Arial, Helvetica, sans-serif; line-height: 1.7; color: var(--ink); background: var(--sand); }
+  a { color: var(--deep); }
+  :focus-visible { outline: 3px solid var(--sea); outline-offset: 2px; }
+
+  /* ---------- Header / Home (beach theme) ---------- */
+  header {
+    position: relative; overflow: hidden; text-align: center;
+    padding: 100px 20px 190px;
+    background: linear-gradient(to bottom, #a9e0e8 0%, #d6f1f2 55%, #f3fbf8 100%);
+    color: var(--night);
+  }
+  /* soft sun */
+  header::before {
+    content: ""; position: absolute; top: 40px; right: 12%;
+    width: 110px; height: 110px; border-radius: 50%;
+    background: #fff3c4;
+    box-shadow: 0 0 0 28px rgba(255,243,196,.35), 0 0 0 60px rgba(255,243,196,.18);
+  }
+  .hero-content { position: relative; z-index: 1; }
+  header h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 20px; letter-spacing: -1px; color: var(--night); }
+  header p { max-width: 800px; margin: 0 auto 28px; color: #35595a; }
+  /* sea and sand waves along the bottom */
+  .shore { position: absolute; left: 0; bottom: -1px; width: 100%; height: 150px; display: block; }
+  .btn {
+    display: inline-block; background: var(--deep); color: #fff; font-weight: 700;
+    padding: 12px 28px; border-radius: 30px; text-decoration: none; border: 0; font-size: 1rem; cursor: pointer;
+  }
+  .btn:hover { background: var(--night); }
+
+  /* ---------- Navigation ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(255,255,255,.97); border-bottom: 1px solid #e2e8e6;
+  }
+  nav ul { list-style: none; display: flex; gap: 6px; padding: 10px 16px; overflow-x: auto; }
+  nav a {
+    display: block; text-decoration: none; color: #315c59; font-size: .9rem; font-weight: 600;
+    padding: 8px 14px; border-radius: 20px; white-space: nowrap;
+  }
+  nav a:hover { background: #dff4ef; color: var(--deep); }
+  @media (min-width: 1100px) { nav ul { justify-content: center; } }
+
+  /* ---------- Audio control in nav ---------- */
+  nav { display: flex; align-items: center; }
+  nav ul { flex: 1; min-width: 0; }
+  .nav-audio { display: flex; align-items: center; padding: 0 16px 0 8px; flex-shrink: 0; }
+  .sound-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--deep); color: #fff; border: 0; cursor: pointer;
+    font: inherit; font-size: .85rem; font-weight: 700;
+    padding: 8px 14px; border-radius: 20px; white-space: nowrap;
+  }
+  .sound-btn:hover { background: var(--night); }
+  .sound-btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .sound-btn .icon-off { display: none; }
+  .sound-btn.muted { background: #8a9a98; }
+  .sound-btn.muted .icon-on { display: none; }
+  .sound-btn.muted .icon-off { display: inline; }
+  @media (max-width: 600px) { .sound-btn .label { display: none; } }
+
+  /* ---------- Layout ---------- */
+  main { width: min(1100px, 92%); margin: 40px auto; }
+  section { margin-bottom: 70px; }
+  section > h2 { color: var(--deep); font-size: 2rem; margin-bottom: 8px; }
+  .lead { color: var(--soft); max-width: 760px; margin-bottom: 28px; }
+  .panel { background: #fff; padding: 32px; border-radius: 16px; border-left: 5px solid var(--sea); box-shadow: 0 6px 20px rgba(0,0,0,.05); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 6px 20px rgba(0,0,0,.05); }
+  .card h3 { color: var(--deep); margin-bottom: 8px; }
+  .card p, .card li { color: var(--soft); font-size: .95rem; }
+  .card ul { padding-left: 18px; }
+
+  /* ---------- Attractions ---------- */
+  article { background: #fff; margin-bottom: 36px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,.07); }
+  article h3 { color: var(--deep); font-size: 1.6rem; padding: 26px 32px 0; }
+  article p { padding: 14px 32px 30px; color: var(--soft); }
+  figure img, .gallery img {
+    display: block; width: 100%; object-fit: cover; background: #cfe6e2;
+  }
+  figure img { height: 400px; }
+  figcaption { background: var(--mist); color: #48605e; padding: 12px 24px; font-size: .9rem; font-style: italic; }
+
+  /* ---------- Gallery ---------- */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .gallery img { height: 220px; border-radius: 12px; }
+
+  /* ---------- Video ---------- */
+  .media { margin-top: 24px; }
+  .media video { display: block; width: 100%; max-width: 800px; height: auto; margin: 0 auto; border-radius: 12px; background: #000; }
+
+  /* ---------- Contact ---------- */
+  form { display: grid; gap: 14px; margin-top: 18px; }
+  label { font-weight: 700; font-size: .9rem; }
+  input, textarea {
+    width: 100%; padding: 12px; border: 1px solid #c5d4d1; border-radius: 10px; font: inherit; margin-top: 4px;
+  }
+  form .btn { background: var(--deep); color: #fff; justify-self: start; }
+  form .btn:hover { background: var(--sea); }
+
+  footer { background: var(--night); color: #cce5e1; text-align: center; padding: 36px 20px; font-size: .9rem; }
+
+  @media (max-width: 768px) {
+    header { padding: 70px 20px 140px; }
+    header::before { width: 70px; height: 70px; top: 24px; right: 8%; box-shadow: 0 0 0 16px rgba(255,243,196,.35), 0 0 0 34px rgba(255,243,196,.18); }
+    .shore { height: 90px; }
+    .panel { padding: 22px; }
+    article h3 { padding: 22px 22px 0; }
+    article p { padding: 12px 22px 24px; }
+    figure img { height: 250px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+
+<body>
+
+<!-- 1. HOME -->
+<header id="home">
+  <div class="hero-content">
+    <h1>Beautiful Spots in El Nido</h1>
+    <p>Limestone cliffs, hidden lagoons, and powder-white beaches. Explore the best places to visit in El Nido, Palawan, and plan a trip you will never forget.</p>
+    <a class="btn" href="#attractions">See the attractions</a>
+  </div>
+
+  <!-- Decorative sea and sand waves -->
+  <svg class="shore" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path fill="#5fc4c0" fill-opacity=".45" d="M0,40 C240,5 480,75 720,40 C960,5 1200,75 1440,40 L1440,150 L0,150 Z"/>
+    <path fill="#2a9d8f" fill-opacity=".5" d="M0,70 C240,40 480,100 720,70 C960,40 1200,100 1440,70 L1440,150 L0,150 Z"/>
+    <path fill="#ffffff" fill-opacity=".85" d="M0,100 C300,78 600,118 900,98 C1100,85 1300,104 1440,96 L1440,150 L0,150 Z"/>
+    <path fill="#f1e3c4" d="M0,112 C300,92 600,128 900,110 C1100,98 1300,116 1440,108 L1440,150 L0,150 Z"/>
+  </svg>
+</header>
+
+<nav aria-label="Main menu">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About El Nido</a></li>
+    <li><a href="#attractions">Attractions</a></li>
+    <li><a href="#activities">Activities</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#food-culture">Food and Culture</a></li>
+    <li><a href="#travel-guide">Travel Guide</a></li>
+    <li><a href="#accommodations">Accommodations</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+
+  <div class="nav-audio">
+    <button id="soundBtn" class="sound-btn" type="button" aria-pressed="false" aria-label="Mute background sound">
+      <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+      <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12a4.5 4.5 0 0 0-2.5-4v2.2l2.5 2.5V12zM19 12a7 7 0 0 1-.9 3.4l1.5 1.5A9 9 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1a7 7 0 0 1 5 6.7zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3a7 7 0 0 1-2.3 1.2v2.1a9 9 0 0 0 3.7-1.9l2 2 1.3-1.3L4.3 3zM12 4 9.9 6.1 12 8.2V4z"/></svg>
+      <span class="label">Sound on</span>
+    </button>
+  </div>
+
+  <!-- Hidden audio element (controlled by the button above) -->
+  <audio id="bgAudio" loop autoplay preload="auto">
+    <source src="C:\Users\USER\Desktop\MOSE\Video\EL NIDO_ The ULTIMATE Guide to PARADISE of the Philippines, Palawan in 4K.mp4">
+  </audio>
+</nav>
+
+<main>
+
+<!-- 2. ABOUT -->
+<section id="about">
+  <h2>About El Nido</h2>
+  <div class="panel">
+    <p>
+      El Nido is a coastal town in the northern part of Palawan, in the Philippines. It sits beside Bacuit Bay,
+      where dozens of islands rise straight out of clear water. Tall limestone cliffs, coral reefs, and quiet
+      white-sand beaches make it one of the most visited destinations in the country. The name comes from the
+      Spanish word for "the nest," after the edible swiftlet nests once gathered from the cliffs here.
+    </p>
+
+    <div class="media">
+      <video autoplay muted loop playsinline controls preload="metadata" aria-label="El Nido travel guide video">
+        <source src="C:\Users\USER\Desktop\MOSE\Video\EL NIDO_ The ULTIMATE Guide to PARADISE of the Philippines, Palawan in 4K.mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ATTRACTIONS -->
+<section id="attractions">
+  <h2>Attractions</h2>
+  <p class="lead">Five places that show El Nido at its best.</p>
+
+  <article id="big-lagoon">
+    <h3>Big Lagoon</h3>
+    <figure>
+      <img src="C:\Users\USER\Desktop\MOSE\Images\Big Lagoon.jpg" alt="Turquoise water fills Big Lagoon, surrounded by tall limestone cliffs covered in greenery">
+      <figcaption>Big Lagoon: limestone cliffs rising from emerald-green water.</figcaption>
+    </figure>
+    <p>Big Lagoon is a calm, emerald-green lagoon on Miniloc Island. Tall limestone cliffs rise straight out of the water. The shallow, clear water makes it popular for kayaking and paddleboarding.</p>
+  </article>
+
+  <article id="nacpan-beach">
+    <h3>Nacpan Beach</h3>
+    <figure>
+      <img src="C:\Users\USER\Desktop\MOSE\Images\Nacpan Beach.jpg" alt="A long stretch of golden sand at Nacpan Beach curves along calm blue water, lined with palm trees">
+      <figcaption>Nacpan Beach: golden sand, palm trees, and wide open sea.</figcaption>
+    </figure>
+    <p>Nacpan Beach is a long golden-sand beach stretching several kilometers along El Nido's coast. It is lined with palm trees and has a relaxed, quiet atmosphere. It is a favorite spot for swimming and watching the sunset.</p>
+  </article>
+
+  <article id="snake-island">
+    <h3>Snake Island</h3>
+    <figure>
+      <img src="C:\Users\USER\Desktop\MOSE\Images\Snake Island.jpg" alt="A narrow white sandbar winds through clear shallow water at Snake Island">
+      <figcaption>Snake Island: a curving white sandbar through shallow water.</figcaption>
+    </figure>
+    <p>Snake Island is named for the curving white sandbar that winds through shallow water like a snake. The sandbar is most visible at low tide. It is a popular stop on island-hopping tours, with clear water ideal for walking and snorkeling.</p>
+  </article>
+
+  <article id="hidden-beach">
+    <h3>Hidden Beach</h3>
+    <figure>
+      <img src="C:\Users\USER\Desktop\MOSE\Images\Hidden Beach.jpg" alt="A small, secluded beach tucked between steep limestone cliffs and clear green water">
+      <figcaption>Hidden Beach: a secluded cove behind the cliffs.</figcaption>
+    </figure>
+    <p>Hidden Beach is a small, secluded beach on Matinloc Island, tucked between steep limestone cliffs. It is reached through a narrow opening in the rocks, which gives it its name. The calm water and peaceful setting make it a favorite for swimming and photos.</p>
+  </article>
+
+  <article id="las-cabanas-beach">
+    <h3>Las Cabañas Beach</h3>
+    <figure>
+      <img src="C:\Users\USER\Desktop\MOSE\Images\Las Cabanas.webp" alt="Beachgoers watch the sun set over the water at Las Cabañas Beach, with the sky glowing orange">
+      <figcaption>Las Cabañas Beach at sunset.</figcaption>
+    </figure>
+    <p>Las Cabañas Beach is a short ride from El Nido town and is known for its sunsets. Visitors relax on the sand with a drink as the sky turns orange, and the nearby shore is good for a quiet swim.</p>
+  </article>
+</section>
+
+<!-- 4. ACTIVITIES -->
+<section id="activities">
+  <h2>Activities</h2>
+  <p class="lead">Things to do at these places and around Bacuit Bay.</p>
+  <div class="grid">
+    <div class="card"><h3>Island hopping</h3><p>Boat tours visit lagoons, beaches, and sandbars in one day. Big Lagoon, Snake Island, and Hidden Beach are common stops.</p></div>
+    <div class="card"><h3>Kayaking and paddleboarding</h3><p>Paddle across the shallow water of Big Lagoon and glide beside the limestone cliffs.</p></div>
+    <div class="card"><h3>Snorkeling and diving</h3><p>Reefs around the bay are home to colorful fish and corals. Dive shops in town offer lessons and guided dives.</p></div>
+    <div class="card"><h3>Swimming and sunsets</h3><p>Swim at Nacpan Beach, then stay for the sunset at Las Cabañas.</p></div>
+    <div class="card"><h3>Hiking</h3><p>Climb Taraw Cliff for wide views over the town and the bay.</p></div>
+    <div class="card"><h3>Photography</h3><p>Hidden Beach, the Snake Island sandbar, and the cliff-lined lagoons make for great photos.</p></div>
+  </div>
+</section>
+
+<!-- 5. GALLERY -->
+<section id="gallery">
+  <h2>Gallery</h2>
+  <p class="lead">These are the beautiful places in El Nido.</p>
+  <div class="gallery">
+    <img src="C:\Users\USER\Desktop\MOSE\Images\image 1.jpeg" alt="El Nido photo 1">
+    <img src="C:\Users\USER\Desktop\MOSE\Images\image 2.jpg" alt="El Nido photo 2">
+    <img src="C:\Users\USER\Desktop\MOSE\Images\image 3.webp" alt="El Nido photo 3">
+    <img src="C:\Users\USER\Desktop\MOSE\Images\image 4.jpg" alt="El Nido photo 4">
+    <img src="C:\Users\USER\Desktop\MOSE\Images\image 5.jpeg" alt="El Nido photo 5">
+    <img src="C:\Users\USER\Desktop\MOSE\Images\image 6.jpg" alt="El Nido photo 6">
+  </div>
+</section>
+
+<!-- 6. FOOD AND CULTURE -->
+<section id="food-culture">
+  <h2>Food and Culture</h2>
+  <p class="lead">El Nido's food comes from the sea, and its culture comes from the people of Palawan.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Fresh seafood</h3>
+      <p>Grilled fish, squid, prawns, and crab are sold fresh in town restaurants and on the beach. Many places let you pick your own catch and choose how it is cooked.</p>
+    </div>
+    <div class="card">
+      <h3>Kinilaw</h3>
+      <p>Raw fish cured in vinegar or calamansi with onion, ginger, and chili. It is a Filipino favorite on the coast.</p>
+    </div>
+    <div class="card">
+      <h3>Palawan cashews</h3>
+      <p>Cashew nuts are a well-known product of Palawan and a popular pasalubong (souvenir) to bring home.</p>
+    </div>
+    <div class="card">
+      <h3>Filipino comfort food</h3>
+      <p>Adobo, sinigang, and lechon appear on many menus, served with rice. Finish with halo-halo on a hot afternoon.</p>
+    </div>
+    <div class="card">
+      <h3>Local communities</h3>
+      <p>Many families in the area have fished these waters for generations. Palawan is also home to indigenous groups such as the Tagbanua and Cuyonon, who keep their own languages and traditions.</p>
+    </div>
+    <div class="card">
+      <h3>Respect the place</h3>
+      <p>Take your trash with you, avoid touching corals, use reef-safe sunscreen, and ask before photographing people.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. TRAVEL GUIDE -->
+<section id="travel-guide">
+  <h2>Travel Guide</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>How to get there</h3>
+      <ul>
+        <li>Fly to Puerto Princesa, then take a van to El Nido (about 5 to 6 hours).</li>
+        <li>Or take a direct flight to El Nido's Lio Airport, offered by some airlines from Manila.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Best time to visit</h3>
+      <p>The dry season, from about November to May, has the calmest seas and the clearest water. The rainy season can cancel boat tours.</p>
+    </div>
+    <div class="card">
+      <h3>Island-hopping tours</h3>
+      <p>Tours are grouped as Tour A, B, C, and D, each visiting different islands and lagoons. Book through your hotel or a licensed operator in town.</p>
+    </div>
+    <div class="card">
+      <h3>Getting around</h3>
+      <p>Tricycles and motorbike rentals are the main ways to reach beaches such as Nacpan and Las Cabañas.</p>
+    </div>
+    <div class="card">
+      <h3>What to bring</h3>
+      <ul>
+        <li>Cash, since ATMs can run out</li>
+        <li>Reef-safe sunscreen</li>
+        <li>Water shoes and a dry bag</li>
+        <li>Light, quick-dry clothes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Good to know</h3>
+      <p>Fees, schedules, and prices change, so confirm them with your tour operator or the local tourism office before you travel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. ACCOMMODATIONS -->
+<section id="accommodations">
+  <h2>Accommodations</h2>
+  <p class="lead">Pick an area that matches your trip.</p>
+  <div class="grid">
+    <div class="card"><h3>El Nido town</h3><p>Close to restaurants, tour offices, and the port. Best for first-time visitors and budget travelers, with hostels and guesthouses.</p></div>
+    <div class="card"><h3>Corong-Corong and Las Cabañas</h3><p>A quieter stretch of coast with mid-range resorts and sunset views, a short ride from town.</p></div>
+    <div class="card"><h3>Nacpan and Calitang</h3><p>Beachfront cottages and small lodges for a slow, peaceful stay far from the town crowds.</p></div>
+    <div class="card"><h3>Island resorts</h3><p>Luxury resorts on private islands in the bay, with boat transfers and all-inclusive options.</p></div>
+  </div>
+</section>
+
+<!-- 9. EVENTS -->
+<section id="events">
+  <h2>Events</h2>
+  <p class="lead">Dates change each year, so check with the local tourism office.</p>
+  <div class="grid">
+    <div class="card"><h3>Taraw Festival</h3><p>A local festival in El Nido named after Taraw Cliff, with street dancing, music, and community activities.</p></div>
+    <div class="card"><h3>Holy Week</h3><p>Many Filipinos travel during this period, so book rooms and boats early.</p></div>
+    <div class="card"><h3>Christmas and New Year</h3><p>A busy season with a festive mood in town and good weather for island hopping.</p></div>
+    <div class="card"><h3>Town fiesta</h3><p>Parades, food, and music celebrate the town's patron saint and bring the community together.</p></div>
+  </div>
+</section>
+
+<!-- 10. CONTACT US -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="panel">
+    <p><strong>Name:</strong> Richard Mose</p>
+    <p><strong>Email:</strong> <a href="moserichard14@gmail.com">moserichard14@gmail.com</a></p>
+    <p><strong>Phone:</strong> 09485631655</p>
+    <p><strong>Address:</strong> El Nido</p>
+
+    <form action="#" method="post">
+      <div><label for="name">Your name</label><input type="text" id="name" name="name" required></div>
+      <div><label for="email">Your email</label><input type="email" id="email" name="email" required></div>
+      <div><label for="message">Message</label><textarea id="message" name="message" rows="4" required></textarea></div>
+      <button class="btn" type="submit">Send message</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Photo credits: Images used for illustration only. Replace with your own photo sources.</p>
+  <p>&copy; 2026 El Nido Travel Guide. All rights reserved.</p>
+</footer>
+
+<script>
+  const audio = document.getElementById('bgAudio');
+  const soundBtn = document.getElementById('soundBtn');
+  const label = soundBtn.querySelector('.label');
+  const unlockEvents = ['click', 'keydown', 'touchstart'];
+
+  function updateButton() {
+    const muted = audio.muted || audio.paused;
+    soundBtn.classList.toggle('muted', muted);
+    soundBtn.setAttribute('aria-pressed', String(muted));
+    soundBtn.setAttribute('aria-label', muted ? 'Unmute background sound' : 'Mute background sound');
+    label.textContent = muted ? 'Sound off' : 'Sound on';
+  }
+
+  // Autoplay on load; if the browser blocks it, start on the first interaction
+  function startAudio() {
+    audio.play().then(updateButton).catch(() => {});
+    unlockEvents.forEach(e => document.removeEventListener(e, startAudio));
+  }
+  audio.play().then(updateButton).catch(() => {
+    updateButton();
+    unlockEvents.forEach(e => document.addEventListener(e, startAudio));
+  });
+
+  // Mute / unmute button
+  soundBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (audio.paused) {
+      audio.muted = false;
+      audio.play().then(updateButton).catch(() => {});
+    } else {
+      audio.muted = !audio.muted;
+    }
+    updateButton();
+  });
+
+  audio.addEventListener('play', updateButton);
+  audio.addEventListener('pause', updateButton);
+  updateButton();
+</script>
+
+</body>
+</html>
+
+
